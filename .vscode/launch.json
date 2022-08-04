@@ -1,0 +1,76 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "type": "node",
+      "name": "jest current file",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "--runInBand",
+        "--runTestsByPath",
+        "${file}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+    },
+    {
+      "type": "node",
+      "name": "node current file",
+      "request": "launch",
+      "program": "/usr/local/bin/ts-node",
+      "args": [
+        "${file}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+    },
+    {
+      "type": "node",
+      "name": "node current file + fixed input",
+      "request": "launch",
+      "program": "/usr/local/bin/ts-node",
+      "args": [
+        "${file}",
+        "mygen", "cmd3",
+        "--name", "peter",
+        "--message", "This is a short message.",
+        "--longwords", "A long words",
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+    },
+    {
+      "type": "node",
+      "name": "node current file + dynamic input",
+      "request": "launch",
+      "program": "/usr/local/bin/ts-node",
+      "args": [
+        "${file}",
+        "${input:input1}",
+        "${input:input2}",
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+    },
+  ],
+  "inputs": [
+		{
+      "id": "input1",
+			"type": "promptString",
+			// "default": "mygen",
+			"description": "Dynamic inputs"
+		},
+    {
+      "id": "input2",
+			"type": "promptString",
+			// "default": "mygen",
+			"description": "Dynamic inputs"
+		}
+	]
+}
