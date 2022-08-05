@@ -140,7 +140,7 @@ args =
 ## Final: End
 
 ------------
-# Fn: `ender(args, config)`
+# Fn: `render(args, config)`
 
 ## Initial
 
@@ -161,15 +161,33 @@ args =
     - NoError?
     - Note
       - Store the file content along with the file name in an object, put all the objects in an array
-      - [{file, text}, ...]
+        - `[{file1, file1Content}, ...]`
   - NoError -> Pre-formatting files
     - NoError?
     - Note
       - Parse the attributes and the body of a template file
-  - NoError -> Render the template
-    - Render Attributes
-    - Render body
+  - NoError -> Render the templates
+    - Actions, for each template
+      - Render Attributes
+        - `renderTemplate(...)`
+      - Render body
+        - `renderTemplate(...)`
   - Return the result
+    - Note
+      - An array of objects
+        - `[{fileName, attributes: renderedAttrs, body:renderedBody }, ...]`
+
+-------
+
+# Fn: renderTemplate
+
+This is the contact point with the underlying tool `EJS`.
+
+
+```ts
+const renderTemplate = (tmpl, locals, config) =>
+  typeof tmpl === 'string' ? ejs.render(tmpl, context(locals, config)) : tmpl
+```
 
 
 -------
